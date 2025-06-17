@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img class="navbar-brand ms-5" src="images/logo.svg" style="height: 75px; width: 75px; margin-right: 1000px">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="main.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="quiz.html">Quiz</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats.html">Statistics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about%20us.html">About us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <p>This quiz bla bla bla</p>
+    <button id="startBtn" class="btn btn-primary">Start</button>
+</div>
+<div id="quizArea" style="display: none;">
+    <h2>How are you feeling?</h2>
+    <button class="btn btn-primary" onclick="showReasons('bad')">Bad</button>
+    <button class="btn btn-primary" onclick="showReasons('good')">Good</button>
+    <button class="btn btn-primary" onclick="showReasons('great')">Great</button>
+</div>
+
+<div id="reasonArea" style="display: none;">
+    <h3>Select a reason:</h3>
+    <div id="reasons"></div>
+</div>
+
+<div id="resultArea" style="display: none;">
+    <h3 id="resultMessage"></h3>
+</div>
+
+<footer class="bg-danger d-flex justify-content-center p-4 mt-5">
+    <p class="text-light">Copyright HCI 2025</p>
+    <ul class="list-unstyled d-flex ps-3">
+        <li class="text-light">Privacy</li>
+        <li class="mx-3 text-light">Terms</li>
+    </ul>
+</footer>
+<script>
+    document.getElementById("startBtn").onclick = function() {
+        document.querySelector(".container").style.display = "none";
+        document.getElementById("quizArea").style.display = "block";
+    }
+
+    function showReasons(feeling) {
+        document.getElementById("quizArea").style.display = "none";
+        document.getElementById("reasonArea").style.display = "block";
+
+        const reasonsDiv = document.getElementById("reasons");
+        reasonsDiv.innerHTML = "";
+
+        let reasons = [];
+        if (feeling === "bad") {
+            reasons = ["Didn't sleep well", "Had a fight", "Too much homework"];
+        } else if (feeling === "good") {
+            reasons = ["Good breakfast", "Fun with friends", "Finished homework"];
+        } else {
+            reasons = ["Great weather", "Got good grades", "Had sports practice"];
+        }
+
+        reasons.forEach(reason => {
+            let btn = document.createElement("button");
+            btn.textContent = reason;
+            btn.onclick = function() {
+                showMessage(feeling, reason);
+            }
+            reasonsDiv.appendChild(btn);
+        });
+    }
+
+    function showMessage(feeling, reason) {
+        document.getElementById("reasonArea").style.display = "none";
+        document.getElementById("resultArea").style.display = "block";
+
+        const message = `You're feeling ${feeling} because "${reason}". Take care and keep moving forward!`;
+        document.getElementById("resultMessage").innerText = message;
+    }
+</script>
+</body>
+</html>
