@@ -2,62 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .container, #quizArea, #reasonArea, #resultArea {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        #reasons button {
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-info-subtle">
     <img class="navbar-brand ms-5" src="images/logo.svg" style="height: 75px; width: 75px; margin-right: 1000px">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="main.html">Home</a>
+                <a class="nav-link text-black" href="main.html">Дома</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="quiz.html">Quiz</a>
+                <a class="nav-link text-black" href="quiz.html">Расположение</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="stats.html">Statistics</a>
+                <a class="nav-link text-black" href="stats.html">Статистики</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about%20us.html">About us</a>
+                <a class="nav-link text-black" href="about%20us.html">За нас</a>
             </li>
         </ul>
     </div>
 </nav>
+
 <div class="container">
-    <p>This quiz bla bla bla</p>
+    <p class="lead">This quiz helps you check your habits and feelings.</p>
     <button id="startBtn" class="btn btn-primary">Start</button>
 </div>
+
 <div id="quizArea" style="display: none;">
-    <h2>How are you feeling?</h2>
-    <button class="btn btn-primary" onclick="showReasons('bad')">Bad</button>
-    <button class="btn btn-primary" onclick="showReasons('good')">Good</button>
-    <button class="btn btn-primary" onclick="showReasons('great')">Great</button>
+    <h2 class="mb-4">How do you feel?</h2>
+    <button class="btn btn-danger m-2" onclick="showReasons('bad')">Bad</button>
+    <button class="btn btn-warning m-2" onclick="showReasons('good')">Good</button>
+    <button class="btn btn-success m-2" onclick="showReasons('great')">Great</button>
 </div>
 
 <div id="reasonArea" style="display: none;">
-    <h3>Select a reason:</h3>
+    <h3 class="mb-3">Select a reason:</h3>
     <div id="reasons"></div>
 </div>
 
 <div id="resultArea" style="display: none;">
-    <h3 id="resultMessage"></h3>
+    <h3 id="resultMessage" class="mt-4"></h3>
 </div>
 
-<footer class="bg-danger d-flex justify-content-center p-4 mt-5">
-    <p class="text-light">Copyright HCI 2025</p>
+<footer class="bg-info-subtle d-flex justify-content-center p-4 mt-4">
+    <p><b>Copyright | 2025</b></p>
     <ul class="list-unstyled d-flex ps-3">
-        <li class="text-light">Privacy</li>
-        <li class="mx-3 text-light">Terms</li>
+        <li><b>Privacy</b></li>
+        <li class="mx-3"><b>Terms</b></li>
     </ul>
 </footer>
+
 <script>
-    document.getElementById("startBtn").onclick = function() {
+    document.getElementById("startBtn").onclick = function () {
         document.querySelector(".container").style.display = "none";
         document.getElementById("quizArea").style.display = "block";
     }
@@ -80,8 +98,9 @@
 
         reasons.forEach(reason => {
             let btn = document.createElement("button");
+            btn.className = "btn btn-outline-primary m-2";
             btn.textContent = reason;
-            btn.onclick = function() {
+            btn.onclick = function () {
                 showMessage(feeling, reason);
             }
             reasonsDiv.appendChild(btn);
